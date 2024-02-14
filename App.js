@@ -1,67 +1,42 @@
-import React from "react";
+import React from 'react';
 import  ReactDOM  from "react-dom";
 
-const heading=React.createElement
-(
-'h1',
-{id: "heading", xyz: "abc"},
-"Hello world from React"
-);
+//React.createElement==>create a object and when we rendered this on DOM than it become and HTML.
+
+//React Element
+const heading=React.createElement('h1',{id:'heading'},"Namaste React");
 console.log(heading);
-const root=ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(heading);
-
-
-//Part -04
+ReactDOM.render(heading,document.getElementById('root'));
 
 /*
-Design This following with help of react 
+It is hard to write the HTML in above way so JSX came in picture-->React & JSX is 2 diffrent thing 
+we can write our React the above complex method also but to help the devolper we use JSX 
+*/ 
 
-<div id='parent'>
-    <div id= 'child'>
-        <h1>I am H1 Tag</h1>
-    </div>
-</div>
+//JSX->JSX IS NOt HTML -->It is like HTML Syntax
 
-*/
+const jsxHeading=(
+    <h1 id='heading'>
+        This is Namaste React inside jsxheading...
+    </h1>
+    );
+ console.log(jsxHeading);
 
-
-/*
-const parent=React.createElement('div',{id: "parent"},
-            React.createElement('div',{id:'child'},
-            React.createElement('h1',{},"I am h1 tag")
-            ));
-console.log(parent);
-const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render(parent);
-*/
-
-/*
-challenge 02-> Design This following with help of react 
-
-<div id='parent'>
-    <div id= 'child_01'>
-        <h1>I am H1 Tag</h1>
-        <h2>I am H2 Tag</h2>
-    </div>
-    <div id= 'child_02'>
-        <h1>I am H1 Tag</h1>
-        <h2>I am H2 Tag</h2>
-    </div>
-</div>
-
-*/
-
-const parent=React.createElement('div',{id:'parent'},[
-    React.createElement('div',{id:'child_01'},[
-        React.createElement('h1',{},'I am child 01_H1 Tag'),
-        React.createElement('h2',{},'I am child 01_H2 Tag'),
-    ]),
-    React.createElement('div',{id:'child_02'},[
-        React.createElement('h1',{},'I am hild_02_H1 Tag'),
-        React.createElement('h2',{},'I am hild_02_H2 Tag'),
-    ]),
-])
-// const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render(parent)
+const Title=()=>{
+    return(
+        <h2>inside the title now put in Heading</h2>
+    )
+}
+ //React Functional  Component
+const number=1000+200;
+const HeadingComponent=()=>{
+    return(
+        <>
+            {Title()}
+            {jsxHeading}
+            {number}
+            <h1>1 st Nmaste react component</h1>
+        </>
+    )
+}
+ReactDOM.render(<HeadingComponent/>,document.getElementById('root'));
