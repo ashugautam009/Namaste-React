@@ -1,18 +1,15 @@
 import React from 'react'
 import RestaurantCard from './RestaurantCard'
+import {restaurantList} from '../Data/Data';
 const Body = () => {
+  console.log('data on the body page',restaurantList)
   return (
     <div className='body'>
         <div className='Search'>Search</div>
         <div className='res-conatainer'>
-            <RestaurantCard 
-              resName="Megna Foods"
-              cuisine="Biryani,North Indian,Asian"
-              />
-            <RestaurantCard
-              resName="KFC"
-              cuisine="Burger,Fast Food"
-            />
+            {
+              restaurantList.map((restaurant)=><RestaurantCard resData={restaurant}/>)
+            }  
         </div>
     </div>
   )

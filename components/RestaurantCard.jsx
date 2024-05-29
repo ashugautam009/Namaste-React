@@ -1,21 +1,30 @@
 import React from 'react'
 
 const RestaurantCard = (props) => {
-  console.log(props);
+ 
+  const {resData}=props
+  const {
+    cloudinaryImageId,
+    name,
+    avgRating,
+    costForTwo,
+    deliveryTime
+  }=resData?.data;
 
-  const {resName,cuisine}=props
+
   return (
-    <div className='res-card'>
+    <div className='res-card' style={{backgroundColor:'#f0f0f0'}}>
         <img 
             className='res-logo'
             alt='res-logo'
-            src='https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/xqwpuhgnsaf18te7zvtv'
+            src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/'+cloudinaryImageId}
 
         />
-        <h3>{resName}</h3>
-        <h4>{cuisine}</h4> 
-        <h4>4.4 stars</h4>
-        <h4>38 Mins</h4>
+        <h3>{name}</h3>
+        {/* <h4>{cuisine}</h4>  */}
+        <h4>{avgRating} stars</h4>
+        <h4>{costForTwo/100} FOR TWO </h4>
+        <h4>{deliveryTime} Mins </h4>
     </div>
   )
 }
