@@ -1,4 +1,5 @@
 import React from 'react'
+import { CORN_LOGO } from '../Utils/constants';
 
 const RestaurantCard = (props) => {
  
@@ -17,7 +18,7 @@ const RestaurantCard = (props) => {
         <img 
             className='res-logo'
             alt='res-logo'
-            src={'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/'+cloudinaryImageId}
+            src={CORN_LOGO + cloudinaryImageId}
 
         />
         <h3>{name}</h3>
