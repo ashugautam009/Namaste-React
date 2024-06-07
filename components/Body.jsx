@@ -8,7 +8,7 @@ const Body = () => {
         <div className='Search'>Search</div>
         <div className='res-conatainer'>
             {
-              restaurantList.map((restaurant)=><RestaurantCard resData={restaurant}/>)
+              restaurantList.map((restaurant)=><RestaurantCard key={restaurant.data.id} resData={restaurant}/>)
             }  
         </div>
     </div>
