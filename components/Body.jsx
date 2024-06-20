@@ -1,36 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import RestaurantCard from './RestaurantCard'
-import {restaurantList} from '../Utils/mockData';
 
+//https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
 
 const Body = () => {
-  console.log('data on the body page',restaurantList);
+  //console.log('data on the body page',restaurantList);
 
   //state variable -- Super powerful variable
-  const[listOfResturant,setlistOfResturant]=useState(restaurantList);
+  const[listOfResturant,setlistOfResturant]=useState([]);
 
-  //Normal JS Variable
-  // let listofResturantjs=[
-    
-  // ]
+  useEffect(()=>{
+    fetchData();
+  },[]);
+
+
+  const fetchData = async () =>{
+    const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9352403&lng=77.624532&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
+    const json=await data.json()
+    console.log('Data inside the ',json);
+    console.log('check the correct data',json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants)
+    setlistOfResturant(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+  }
+  
   return (
     <div className='body'>
         
         <div className='Search'>Search</div>
         
         <div className='filter'>
+
+          {/* Filter the resturant on the basics of rating whose rating is more than 4 */}
           <button className='filter-btn' onClick={()=>{
             filterResturant=listOfResturant.filter((res)=> {
               return res.data.avgRating>4 
-          })
+          }) 
             setlistOfResturant(filterResturant);
             console.log('4 rating resturant are ',filterResturant);
           }}>Top  rated returant </button>
+
+          {/*RESET BUTTON  */}
+
+          <button onClick={()=>{
+            setlistOfResturant(restaurantList);
+          }}>
+            Reset 
+          </button>
+
         </div>
 
         <div className='res-conatainer'>
             {
-              listOfResturant.map((restaurant)=><RestaurantCard key={restaurant.data.id} resData={restaurant}/>)
+              listOfResturant.map((restaurant)=><RestaurantCard  resData={restaurant}/>)
             }  
         </div>  
     </div>
