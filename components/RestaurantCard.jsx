@@ -4,7 +4,6 @@ import { CORN_LOGO } from '../Utils/constants';
 const RestaurantCard = (props) => {
  
   const {resData}=props
-  
   const {
     cloudinaryImageId,
     name,
@@ -12,7 +11,7 @@ const RestaurantCard = (props) => {
     costForTwo,
     deliveryTime,
     sla
-  }=resData?.info||resData?.data;
+  }=resData?.info
 
 
   return (
@@ -23,7 +22,6 @@ const RestaurantCard = (props) => {
             src={CORN_LOGO + cloudinaryImageId}
 
         />
-    
         <h3>{name}</h3>
         {/* <h4>{cuisine}</h4>  */}
         <h4>{avgRating} stars</h4>
